@@ -1,16 +1,16 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { FiMenu, FiX, FiArrowRight } from "react-icons/fi";
 
-export default function Navbar({ activePage }: { activePage?: "home" | "about" }) {
+export default function Navbar({ activePage }: { activePage?: "home" | "about" | "overview" | "contact" }) {
   const [open, setOpen] = useState(false);
+  
   const links = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Overview", href: "#overview" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/", id: "home" },
+    { label: "About", href: "/about", id: "about" },
+    { label: "Overview", href: "/overview", id: "overview" },
+    { label: "Contact", href: "/contact", id: "contact" },
   ];
 
   return (
@@ -18,7 +18,6 @@ export default function Navbar({ activePage }: { activePage?: "home" | "about" }
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-3">
-          {/* Custom SVG for exact Google Dev Logo representation */}
           <svg width="32" height="32" viewBox="0 0 24 24" className="shrink-0">
             <path fill="#4285F4" d="M22.5 12c0-.8-.1-1.5-.2-2.2H12v4.3h5.9c-.3 1.4-1 2.5-2.2 3.3v2.7h3.5c2.1-1.9 3.3-4.7 3.3-8.1z"/>
             <path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.5-2.7c-1 .7-2.2 1.1-3.8 1.1-2.9 0-5.3-1.9-6.2-4.6H2v2.9C3.9 20.7 7.7 23 12 23z"/>
@@ -32,17 +31,17 @@ export default function Navbar({ activePage }: { activePage?: "home" | "about" }
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6">
           {links.map((link) => {
-            const isActive = (activePage === "about" && link.label === "About") || (activePage === "home" && link.label === "Home");
+            const isActive = activePage === link.id;
             return (
               <Link
                 key={link.label}
                 href={link.href}
                 className={`text-sm transition-colors ${
                   isActive 
-                    ? "text-google-blue font-medium bg-blue-50 px-4 py-1.5 rounded-full" 
-                    : "text-gray-600 hover:text-gray-900"
+                    ? "text-google-blue font-medium bg-blue-50 px-5 py-1.5 rounded-full" 
+                    : "text-gray-600 hover:text-gray-900 px-2"
                 }`}
               >
                 {link.label}
@@ -54,7 +53,7 @@ export default function Navbar({ activePage }: { activePage?: "home" | "about" }
         {/* CTA */}
         <div className="hidden md:flex">
           <Link 
-            href="#tracks" 
+            href="/overview" 
             className="bg-google-blue hover:bg-blue-600 text-white text-sm font-medium px-5 py-2.5 rounded-lg flex items-center gap-2 transition-colors"
           >
             Find your track <FiArrowRight />
@@ -75,7 +74,7 @@ export default function Navbar({ activePage }: { activePage?: "home" | "about" }
               {link.label}
             </Link>
           ))}
-          <Link href="#tracks" className="bg-google-blue text-white text-center py-2 rounded-lg mt-2" onClick={() => setOpen(false)}>
+          <Link href="/overview" className="bg-google-blue text-white text-center py-2 rounded-lg mt-2" onClick={() => setOpen(false)}>
             Find your track
           </Link>
         </div>
