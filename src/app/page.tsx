@@ -9,7 +9,7 @@ import ProjectHighlight from "@/components/sections/home/ProjectHighlight";
 import StepsSection from "@/components/sections/home/StepsSection";
 import InclusionBanner from "@/components/sections/home/InclusionBanner";
 import FaqSection from "@/components/sections/home/FaqSection";
-import CtaBanner from "@/components/sections/home/CtaBanner";
+import CtaBanner from "@/components/sections/globals/CtaBanner";
 
 export default function Home() {
   return (

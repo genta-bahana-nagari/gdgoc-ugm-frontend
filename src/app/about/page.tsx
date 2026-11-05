@@ -5,7 +5,7 @@ import PurposeSection from "@/components/sections/about/PurposeSection";
 import ValuesSection from "@/components/sections/about/ValuesSection";
 import PathwaysSection from "@/components/sections/about/PathwaysSection";
 import InclusionBanner from "@/components/sections/home/InclusionBanner";
-import CtaBanner from "@/components/sections/home/CtaBanner";
+import CtaBanner from "@/components/sections/globals/CtaBanner";
 
 export default function AboutPage() {
   return (
