@@ -96,16 +96,17 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-          <p>© GDGoc Universitas Gadjah Mada • 2025/2026</p>
+        <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-start gap-4 text-xs text-gray-500">
+          <div className="flex flex-col gap-8 w-fit">
+            <p>© GDGoc Universitas Gadjah Mada • 2025/2026</p>
+            <div className="flex h-1.5 w-full rounded-full overflow-hidden">
+              <div className="flex-1 bg-google-blue"></div>
+              <div className="flex-1 bg-google-red"></div>
+              <div className="flex-1 bg-google-yellow"></div>
+              <div className="flex-1 bg-google-green"></div>
+            </div>
+          </div>
           <p>Made for the campus. Open to possibilities.</p>
-        </div>
-
-        <div className="mt-6 flex h-1.5 w-full rounded-full overflow-hidden">
-          <div className="flex-1 bg-google-blue"></div>
-          <div className="flex-1 bg-google-red"></div>
-          <div className="flex-1 bg-google-yellow"></div>
-          <div className="flex-1 bg-google-green"></div>
         </div>
       </div>
     </footer>
