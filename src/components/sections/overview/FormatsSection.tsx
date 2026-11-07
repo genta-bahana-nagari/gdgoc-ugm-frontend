@@ -1,4 +1,10 @@
-import { FiBookOpen, FiTerminal, FiUsers, FiShare2, FiArrowRight } from "react-icons/fi";
+import {
+  FiBookOpen,
+  FiTerminal,
+  FiUsers,
+  FiShare2,
+  FiArrowRight,
+} from "react-icons/fi";
 import Link from "next/link";
 
 import { apiFetch } from "@/lib/api";
@@ -101,8 +107,6 @@ export default async function FormatsSection() {
                     </div>
                   </div>
                 </div>
-
-                {/* Posisi CTA terbaik: Di bagian bawah kartu, sejajar dengan konten */}
                 <div className="pt-4 border-t border-gray-100 mt-4">
                   <Link
                     href={`/contact?format=${item.id}`} // atau arahkan ke section/modal yang sesuai

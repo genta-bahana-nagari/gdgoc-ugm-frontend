@@ -31,7 +31,7 @@ export default function NotJustLearning() {
           to ask questions, share what you know, and try something new.
         </p>
         <div className="flex gap-2">
-          {["Student-led", "Peer-powered", "Curiosity-first"].map((tag) => (
+          {["Student Led", "Peer Powered", "Curiosity First"].map((tag) => (
             <span
               key={tag}
               className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full"
