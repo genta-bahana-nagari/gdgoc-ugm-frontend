@@ -1,5 +1,3 @@
-import { FiBookOpen, FiUserPlus, FiCode, FiHeart } from "react-icons/fi";
-
 import { apiFetch } from "@/lib/api";
 import { Value } from "@/types/value";
 
@@ -26,9 +24,6 @@ export default async function ValuesSection() {
             key={i}
             className="relative bg-white border border-gray-200 rounded-2xl p-6 shadow-sm overflow-hidden flex flex-col"
           >
-            {/*<div
-              className={`absolute top-0 left-0 w-full h-1.5 ${val.color}`}
-            /> */}
             <div
               className="absolute top-0 left-0 w-full h-1.5"
               style={{ backgroundColor: value.color }}
