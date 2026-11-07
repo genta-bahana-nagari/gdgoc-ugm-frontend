@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { FiArrowRight, FiSearch, FiPenTool, FiCode } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import { apiFetch } from "@/lib/api";
 import { Track } from "@/types/track";
 
 export default async function TracksSection() {
-  const tracks: Track[] = await apiFetch("/tracks").then(
-    (result) => result.data,
-  );
+  const result = await apiFetch<Track[]>("/tracks");
+  const tracks = result.data;
 
   return (
     <section id="tracks" className="max-w-6xl mx-auto px-6 py-20">
@@ -66,7 +65,7 @@ export default async function TracksSection() {
 
             <Link
               href="#"
-              className={`inline-flex items-center gap-2 font-medium text-sm ${track.linkColor} hover:underline mt-auto`}
+              className="inline-flex items-center gap-2 font-medium text-sm hover:underline mt-auto" style={{ color: `${track.color}` }}
             >
               Explore this track <FiArrowRight />
             </Link>
