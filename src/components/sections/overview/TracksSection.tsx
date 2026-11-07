@@ -121,8 +121,8 @@ export default async function TracksSection() {
         <h3 className="text-2xl font-bold text-gray-900 mb-6">
           From an interest to something you can show.
         </h3>
-        <div className="border border-gray-200 rounded-xl overflow-hidden bg-white">
-          <table className="w-full text-left text-sm">
+        <div className="border border-gray-200 rounded-xl overflow-x-auto bg-white shadow-sm">
+          <table className="w-full text-left text-sm min-w-[640px]">
             <thead className="bg-gray-50 text-gray-600 border-b border-gray-200">
               <tr>
                 <th className="px-6 py-4 font-medium w-1/4">Pathway</th>
