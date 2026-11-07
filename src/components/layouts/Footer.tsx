@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { FiInstagram, FiYoutube } from "react-icons/fi";
 
-export default function Footer() {
+import { apiFetch } from "@/lib/api";
+import { Navigations } from "@/types/navigations";
+
+export default async function Footer() {
+  const result = await apiFetch<Navigations[]>("/navigation");
+  const navList = result?.data || [];
+
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
       <div className="max-w-6xl mx-auto px-6 pt-16 pb-8">
@@ -49,26 +55,13 @@ export default function Footer() {
           <div className="md:col-span-3">
             <h4 className="font-semibold text-gray-900 mb-4">Explore</h4>
             <ul className="flex flex-col gap-3 text-sm text-gray-600">
-              <li>
-                <Link href="/" className="hover:text-google-blue">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="hover:text-google-blue">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="#tracks" className="hover:text-google-blue">
-                  Overview
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-google-blue">
-                  Contact
-                </Link>
-              </li>
+              {navList.map((value, i) => (
+                <li key={i}>
+                  <Link href={value.href} className="hover:text-google-blue">
+                    {value.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
