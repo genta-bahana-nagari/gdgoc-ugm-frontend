@@ -1,6 +1,7 @@
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
 import HeroSection from "@/components/sections/home/HeroSection";
+import StatsSection from "@/components/sections/home/StatsSection";
 import FeaturesRow from "@/components/sections/home/FeaturesRow";
 import NotJustLearning from "@/components/sections/home/NotJustLearning";
 import TracksSection from "@/components/sections/home/TracksSection";
@@ -9,7 +10,7 @@ import ProjectHighlight from "@/components/sections/home/ProjectHighlight";
 import StepsSection from "@/components/sections/home/StepsSection";
 import InclusionBanner from "@/components/sections/home/InclusionBanner";
 import FaqSection from "@/components/sections/home/FaqSection";
-import CtaBanner from "@/components/sections/home/CtaBanner";
+import CtaBanner from "@/components/sections/globals/CtaBanner";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Navbar activePage="home" />
       <main className="overflow-hidden">
         <HeroSection />
+        <StatsSection />
         <FeaturesRow />
         <NotJustLearning />
         <TracksSection />

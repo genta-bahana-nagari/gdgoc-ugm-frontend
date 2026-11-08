@@ -1,21 +1,17 @@
 import { FiArrowRight } from "react-icons/fi";
+import Link from "next/link";
+import { apiFetch } from "@/lib/api";
+import { Roles } from "@/types/roles";
 
-const pathways = [
-  {
-    title: "Come as a learner",
-    desc: "Explore a topic, join a discussion, and ask the question that's been on your mind.",
-  },
-  {
-    title: "Grow as a collaborator",
-    desc: "Work with people whose skills complement yours. Discover what you can build together.",
-  },
-  {
-    title: "Give back as a contributor",
-    desc: "Share knowledge, support a learning session, or bring an idea for the community.",
-  },
-];
+export default async function PathwaysSection() {
+  const result = await apiFetch<Roles[]>("/roles");
+  const roles = result.data;
 
-export default function PathwaysSection() {
+  const formatCTA = (slug: string) => {
+    const text = slug.replace(/-/g, " ");
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  };
+
   return (
     <section className="max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
       <div className="lg:col-span-5">
@@ -37,15 +33,21 @@ export default function PathwaysSection() {
 
       <div className="lg:col-span-7 flex flex-col justify-center">
         <div className="flex flex-col">
-          {pathways.map((p, i) => (
+          {roles.map((role, i) => (
             <div
               key={i}
               className="border-b border-gray-200 py-6 first:pt-0 last:border-0"
             >
               <h3 className="text-xl font-bold text-gray-900 mb-2">
-                {p.title}
+                {role.title}
               </h3>
-              <p className="text-gray-600">{p.desc}</p>
+              <p className="text-gray-600">{role.description}</p>
+              <Link
+                href={role.cta}
+                className="pt-2 inline-flex items-center gap-2 font-medium text-sm hover:underline mt-auto text-blue-400 hover:text-blue-500"
+              >
+                {formatCTA(role.cta)} <FiArrowRight />
+              </Link>
             </div>
           ))}
         </div>

@@ -4,8 +4,8 @@ import AboutHero from "@/components/sections/about/AboutHero";
 import PurposeSection from "@/components/sections/about/PurposeSection";
 import ValuesSection from "@/components/sections/about/ValuesSection";
 import PathwaysSection from "@/components/sections/about/PathwaysSection";
-import InclusionBanner from "@/components/sections/home/InclusionBanner";
-import CtaBanner from "@/components/sections/home/CtaBanner";
+import InclusionBanner from "@/components/sections/about/InclusionBanner";
+import CtaBanner from "@/components/sections/globals/CtaBanner";
 
 export default function AboutPage() {
   return (
