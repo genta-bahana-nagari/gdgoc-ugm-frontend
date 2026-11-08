@@ -41,7 +41,7 @@ export default async function ContactFormSection() {
           What brings you here?
         </h2>
         <p className="text-gray-600 mb-6">
-          Pick the closest topic in the form. We'll take it from there.
+          Pick the closest topic in the form. We&apos;ll take it from there.
         </p>
         {inquiryList.map((item, i) => {
           const config = inquiryConfig[item.id] || {
@@ -76,7 +76,7 @@ export default async function ContactFormSection() {
             Looking for community updates?
           </h3>
           <p className="text-sm text-gray-700 mb-4">
-            Follow @gdgoc.ugm for learning opportunities and what's happening in
+            Follow @gdgoc.ugm for learning opportunities and what&apos;s happening in
             the community.
           </p>
           <a
@@ -204,7 +204,7 @@ export default async function ContactFormSection() {
               Send message <FiArrowRight />
             </button>
             <p className="text-[11px] text-gray-500 text-center sm:text-right max-w-[200px]">
-              Please don't include passwords or sensitive personal information.
+              Please don&apos;t include passwords or sensitive personal information.
             </p>
           </div>
         </form>

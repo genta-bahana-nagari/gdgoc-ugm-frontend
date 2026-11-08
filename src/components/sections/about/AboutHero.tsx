@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function AboutHero() {
   return (
     <section className="max-w-6xl mx-auto px-6 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -10,10 +8,10 @@ export default function AboutHero() {
         <h1 className="mt-6 text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] text-gray-900">
           Built by students.
           <br />
-          <span className="text-google-blue">For what's next.</span>
+          <span className="text-google-blue">For what&apos;s next.</span>
         </h1>
         <p className="mt-6 text-lg text-gray-600 max-w-md leading-relaxed">
-          We're a community of learners and makers at Universitas Gadjah Mada,
+          We&apos;re a community of learners and makers at Universitas Gadjah Mada,
           connected by curiosity and the belief that technology can do good.
         </p>
         <p className="mt-10 text-xs font-semibold tracking-widest text-gray-400 uppercase">

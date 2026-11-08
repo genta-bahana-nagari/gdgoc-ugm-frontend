@@ -1,14 +1,9 @@
 "use client"
-import { Inter } from "next/font/google";
 import { BiSearch } from "react-icons/bi";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-
 export default function Error({
-  error,
   reset,
 }: {
-  error: Error;
   reset: () => void;
 }) {
   return (

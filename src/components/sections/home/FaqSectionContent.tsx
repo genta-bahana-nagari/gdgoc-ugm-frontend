@@ -5,6 +5,30 @@ import { BiSearch } from "react-icons/bi";
 import { FiChevronDown, FiArrowRight } from "react-icons/fi";
 
 export default function FaqSectionContent({ faqList, error }: { faqList: Faqs[]; error?: string }) {
+  const [open, setOpen] = useState<number | null>(0);
+
+  const categories = useMemo(() => {
+    const categories = new Set<string>();
+    faqList.forEach((faq) => faq.category && categories.add(faq.category));
+    return categories;
+  }, [faqList]);
+
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
+    undefined
+  );
+
+  const filteredFaqList = selectedCategory
+    ? faqList.filter((faq) => faq.category === selectedCategory)
+    : faqList;
+
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
+  };
+
+  const handleClearCategoryFilter = () => {
+    setSelectedCategory(undefined);
+  };
+
   // Error state
   if (error) {
     return (
@@ -58,30 +82,6 @@ export default function FaqSectionContent({ faqList, error }: { faqList: Faqs[];
     );
   }
 
-  const [open, setOpen] = useState<number | null>(0);
-
-  const categories = useMemo(() => {
-    const categories = new Set<string>();
-    faqList.forEach((faq) => faq.category && categories.add(faq.category));
-    return categories;
-  }, [faqList]);
-
-  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
-    undefined
-  );
-
-  const filteredFaqList = selectedCategory
-    ? faqList.filter((faq) => faq.category === selectedCategory)
-    : faqList;
-
-  const handleCategorySelect = (category: string) => {
-    setSelectedCategory(category);
-  };
-
-  const handleClearCategoryFilter = () => {
-    setSelectedCategory(undefined);
-  };
-
   return (
     <section
       id="faq"
@@ -126,18 +126,18 @@ export default function FaqSectionContent({ faqList, error }: { faqList: Faqs[];
                     category === "joining-learning"
                       ? "rgba(66, 133, 244, 0.15)"
                       : category === "collaboration"
-                        ? "rgba(234, 67, 53, 0.15)"
-                        : category === "speaking-sharing"
-                          ? "rgba(52, 168, 83, 0.15)"
-                          : "rgba(128, 128, 128, 0.15)",
+                      ? "rgba(234, 67, 53, 0.15)"
+                      : category === "speaking-sharing"
+                        ? "rgba(52, 168, 83, 0.15)"
+                        : "rgba(128, 128, 128, 0.15)",
                   borderColor:
                     category === "joining-learning"
                       ? "rgba(66, 133, 244, 0.4)"
                       : category === "collaboration"
-                        ? "rgba(234, 67, 53, 0.4)"
-                        : category === "speaking-sharing"
-                          ? "rgba(52, 168, 83, 0.4)"
-                          : "rgba(128, 128, 128, 0.4)",
+                      ? "rgba(234, 67, 53, 0.4)"
+                      : category === "speaking-sharing"
+                        ? "rgba(52, 168, 83, 0.4)"
+                        : "rgba(128, 128, 128, 0.4)",
                 }}
                 onClick={() => handleCategorySelect(category)}
               >

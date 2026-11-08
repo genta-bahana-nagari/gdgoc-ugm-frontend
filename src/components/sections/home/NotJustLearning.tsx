@@ -27,7 +27,7 @@ export default function NotJustLearning() {
           learn with each other.
         </p>
         <p className="text-lg text-gray-600 leading-relaxed mb-8">
-          From your first line of code to your next product idea, there's room
+          From your first line of code to your next product idea, there&apos;s room
           to ask questions, share what you know, and try something new.
         </p>
         <div className="flex gap-2">

@@ -2,20 +2,17 @@ import { apiFetch } from "@/lib/api";
 import { StatsData } from "@/types/stats";
 
 export default async function StatsSection({
-  error,
   setError,
 }: {
-  error?: string;
   setError?: (e: string) => void;
 }) {
   let stats: StatsData;
-  let errorMessage = "";
 
   try {
     const result = await apiFetch<StatsData>("/stats");
     stats = result.data;
-  } catch (err: any) {
-    errorMessage = err.message || "Failed to load stats";
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : "Failed to load stats";
     if (setError) setError(errorMessage);
     // Provide default stats so UI doesn't break
     stats = {

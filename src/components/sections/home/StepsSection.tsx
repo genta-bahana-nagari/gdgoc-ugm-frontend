@@ -24,7 +24,7 @@ export default function StepsSection() {
           • MAKE YOUR FIRST MOVE
         </span>
         <h2 className="mt-4 text-4xl font-bold text-gray-900">
-          You don't need to have it all
+          You don&apos;t need to have it all
           <br />
           figured out.
         </h2>

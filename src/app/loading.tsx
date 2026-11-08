@@ -1,7 +1,4 @@
-import { Inter } from "next/font/google";
 import { FiLoader } from "react-icons/fi";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export default function Loading() {
   return (

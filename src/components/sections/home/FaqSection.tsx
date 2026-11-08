@@ -4,22 +4,20 @@ import { Faqs } from "@/types/faqs";
 import FaqSectionContent from "./FaqSectionContent";
 
 export default async function FaqSection({
-  error,
   setError,
 }: {
-  error?: string;
   setError?: (e: string) => void;
 }) {
   let faqList: Faqs[] = [];
-  let errorMessage = "";
+  let error: string | undefined;
 
   try {
     const result = await apiFetch<Faqs[]>("/faqs");
     faqList = result.data;
-  } catch (err: any) {
-    errorMessage = err.message || "Failed to load FAQs";
-    if (setError) setError(errorMessage);
+  } catch (err: unknown) {
+    error = err instanceof Error ? err.message : "Failed to load FAQs";
+    if (setError) setError(error);
   }
 
-  return <FaqSectionContent faqList={faqList} error={errorMessage} />;
+  return <FaqSectionContent faqList={faqList} error={error} />;
 }

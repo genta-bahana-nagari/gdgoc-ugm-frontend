@@ -14,7 +14,7 @@ export default function InclusionBanner() {
               them.
             </h2>
             <p className="text-gray-700 text-center md:text-start">
-              You don't have to be the most experienced person in the room.
+              You don&apos;t have to be the most experienced person in the room.
               Curiosity, kindness, and a willingness to learn are a good place
               to start.
             </p>

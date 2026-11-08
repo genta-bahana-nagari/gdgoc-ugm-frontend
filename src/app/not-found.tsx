@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { IoCloseCircle } from "react-icons/io5";
 
 export default function NotFound() {
@@ -20,7 +19,7 @@ export default function NotFound() {
           Page not found
         </h2>
         <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-          The page you are looking for doesn't exist or has been moved. Check
+          The page you are looking for doesn&apos;t exist or has been moved. Check
           the URL or navigate back below.
         </p>
 

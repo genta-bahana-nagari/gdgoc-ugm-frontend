@@ -19,7 +19,7 @@ export default async function PathwaysSection() {
           • PEOPLE, NOT LABELS
         </span>
         <h2 className="mt-4 text-4xl font-bold leading-tight text-gray-900 mb-6">
-          There's more
+          There&apos;s more
           <br />
           than one way to
           <br />
@@ -56,7 +56,7 @@ export default async function PathwaysSection() {
           href="#"
           className="mt-8 inline-flex items-center gap-2 text-google-blue font-medium hover:underline"
         >
-          Let's talk about getting involved <FiArrowRight />
+          Let&apos;s talk about getting involved <FiArrowRight />
         </a>
       </div>
     </section>

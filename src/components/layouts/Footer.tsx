@@ -11,7 +11,7 @@ export default async function Footer() {
       apiFetch<StatsData>("/stats"),
       apiFetch<Navigations[]>("/navigation"),
     ]);
-  } catch (err: any) {
+  } catch {
     // Provide fallback data so UI doesn't break
     statsResult = {
       data: {

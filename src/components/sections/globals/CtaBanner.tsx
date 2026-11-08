@@ -12,7 +12,7 @@ export default function CtaBanner() {
           <h2 className="mt-3 text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
             Bring your curiosity.
             <br />
-            We'll build from there.
+            We&apos;ll build from there.
           </h2>
           <p className="mt-3 text-gray-600">
             Find a learning track, meet a collaborator, or start a conversation.

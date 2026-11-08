@@ -35,7 +35,7 @@ export default function ContactGuidance() {
               For collaborations
             </h3>
             <p className="text-gray-600">
-              Share the idea, who it's for, and how you imagine working with the
+              Share the idea, who it&apos;s for, and how you imagine working with the
               community.
             </p>
           </div>

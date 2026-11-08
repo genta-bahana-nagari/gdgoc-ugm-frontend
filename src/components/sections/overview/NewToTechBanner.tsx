@@ -12,15 +12,15 @@ export default function NewToTechBanner() {
           <h2 className="text-3xl font-bold text-gray-900 leading-tight">
             New to tech?
             <br />
-            That's a starting point,
+            That&apos;s a starting point,
             <br />
             too.
           </h2>
         </div>
         <div className="md:col-span-7">
           <p className="text-lg text-gray-800 mb-4">
-            You don't need a finished portfolio or the perfect track choice.
-            Pick a topic you're curious about. If you're unsure, tell us what
+            You don&apos;t need a finished portfolio or the perfect track choice.
+            Pick a topic you&apos;re curious about. If you&apos;re unsure, tell us what
             interests you and we can start a conversation.
           </p>
           <Link
