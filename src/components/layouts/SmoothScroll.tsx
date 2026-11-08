@@ -11,14 +11,6 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     const lenis = new Lenis({
       duration: 0.75,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      anchors: {
-        offset: -130,
-      },
-      mouseMultiplier: 1,
-      smoothTouch: false,
       touchMultiplier: 2,
     });
 
