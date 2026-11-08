@@ -35,17 +35,6 @@ export default function Error({
         >
           Retry
         </button>
-
-        <p className="text-xs text-gray-500 mt-4">
-          <a
-            href="https://www.google.com/search?q=Google+Developer+Groups+On+Campus"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline text-blue-600"
-          >
-            Check GDGOC status
-          </a>
-        </p>
       </div>
     </section>
   );

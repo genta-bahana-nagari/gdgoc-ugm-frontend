@@ -5,13 +5,44 @@ import { StatsData } from "@/types/stats";
 import { Navigations } from "@/types/navigations";
 
 export default async function Footer() {
-  const [statsResult, navResult] = await Promise.all([
-    apiFetch<StatsData>("/stats"),
-    apiFetch<Navigations[]>("/navigation"),
-  ]);
+  let statsResult, navResult;
+  try {
+    [statsResult, navResult] = await Promise.all([
+      apiFetch<StatsData>("/stats"),
+      apiFetch<Navigations[]>("/navigation"),
+    ]);
+  } catch (err: any) {
+    // Provide fallback data so UI doesn't break
+    statsResult = {
+      data: {
+        community_members: 0,
+        workshops_held: 0,
+        projects_shipped: 0,
+        active_tracks: 0,
+        university: "GDGOC UGM",
+        founded_year: 2025,
+        tagline: "Building the future of technology, one student developer at a time.",
+        social: {
+          instagram: "",
+          linkedin: "",
+          github: "",
+        },
+        city: "",
+        country: "",
+      },
+    };
+    navResult = {
+      data: [
+        { label: "Home", href: "/" },
+        { label: "About", href: "/about" },
+        { label: "Overview", href: "/overview" },
+        { label: "Contact", href: "/contact" },
+      ],
+    };
+  }
 
   const stats = statsResult.data;
-  const navList = navResult?.data || [];
+  const navList = navResult.data || [];
 
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
@@ -52,7 +83,7 @@ export default async function Footer() {
               </div>
             </Link>
             <p className="text-sm text-gray-600 max-w-sm mt-2">
-              {stats.tagline} A student community for curious minds, shared
+              {stats.tagline || "Building the future of technology, one student developer at a time."} A student community for curious minds, shared
               learning, and technology with purpose.
             </p>
           </div>
@@ -71,16 +102,14 @@ export default async function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <h4 className="font-semibold text-gray-900 mb-4">
-              Keep in the loop
-            </h4>
+            <h4 className="font-semibold text-gray-900 mb-4">Keep in the loop</h4>
             <a
               href={`https://instagram.com/${stats.social.instagram.replace("@", "")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-google-blue hover:underline block mb-4"
             >
-              {stats.social.instagram}
+              {stats.social.instagram || ""}
             </a>
             <div className="flex gap-4 text-gray-500 mb-6">
               <a
@@ -112,7 +141,7 @@ export default async function Footer() {
               </a>
             </div>
             <p className="text-xs text-gray-500">
-              {stats.city}, {stats.country} • Est. {stats.founded_year}
+              {stats.city || ""}, {stats.country || ""} • Est. {stats.founded_year}
             </p>
           </div>
         </div>
