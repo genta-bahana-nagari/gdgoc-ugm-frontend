@@ -2,14 +2,40 @@ import {
   FiArrowRight,
   FiArrowUpRight,
   FiPlus,
-  FiCode,
   FiHelpCircle,
+  FiBookOpen,
 } from "react-icons/fi";
+import { PiDiamondBold } from "react-icons/pi";
 
-export default function ContactFormSection() {
+import { apiFetch } from "@/lib/api";
+import { Inquiry } from "@/types/inquiry";
+
+const inquiryConfig: Record<
+  string,
+  {
+    icon: React.ReactNode;
+  }
+> = {
+  "joining-learning": {
+    icon: <FiArrowUpRight size={24} />,
+  },
+  collaboration: {
+    icon: <FiPlus size={24} />,
+  },
+  "speaking-sharing": {
+    icon: <PiDiamondBold size={24} />,
+  },
+  "general-inquiry": {
+    icon: <FiHelpCircle size={24} />,
+  },
+};
+
+export default async function ContactFormSection() {
+  const result = await apiFetch<Inquiry[]>("/inquiry-categories");
+  const inquiryList = result.data;
+
   return (
     <section className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-      {/* Left Column: Reasons & Updates */}
       <div className="lg:col-span-5 space-y-4">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">
           What brings you here?
@@ -17,58 +43,29 @@ export default function ContactFormSection() {
         <p className="text-gray-600 mb-6">
           Pick the closest topic in the form. We'll take it from there.
         </p>
+        {inquiryList.map((item, i) => {
+          const config = inquiryConfig[item.id] || {
+            icon: <FiBookOpen size={24} />,
+          };
 
-        <button className="w-full text-left bg-blue-50 border border-blue-100 rounded-xl p-4 flex items-start gap-4 transition-all hover:bg-blue-100/50">
-          <div className="w-8 h-8 rounded-full bg-google-blue text-white flex items-center justify-center shrink-0">
-            <FiArrowUpRight size={18} />
-          </div>
-          <div>
-            <div className="font-semibold text-gray-900">
-              Joining & learning
+          return (
+            <div key={item.id || i}>
+              <button className="w-full text-left bg-blue-50 border border-blue-100 rounded-xl p-4 flex items-start gap-4 transition-all hover:bg-blue-100/50">
+                <div className="w-8 h-8 text-google-blue flex items-center justify-center shrink-0">
+                  {config.icon}
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-900">
+                    {item.label}
+                  </div>
+                  <div className="text-sm text-gray-600 mt-1">
+                    {item.description}
+                  </div>
+                </div>
+              </button>
             </div>
-            <div className="text-sm text-gray-600 mt-1">
-              Getting started, learning tracks, and participation
-            </div>
-          </div>
-        </button>
-
-        <button className="w-full text-left bg-white border border-gray-200 rounded-xl p-4 flex items-start gap-4 transition-all hover:bg-gray-50">
-          <div className="w-8 h-8 rounded-full bg-white border border-gray-200 text-gray-600 flex items-center justify-center shrink-0">
-            <FiPlus size={18} />
-          </div>
-          <div>
-            <div className="font-semibold text-gray-900">Collaboration</div>
-            <div className="text-sm text-gray-600 mt-1">
-              Community activities and shared ideas
-            </div>
-          </div>
-        </button>
-
-        <button className="w-full text-left bg-white border border-gray-200 rounded-xl p-4 flex items-start gap-4 transition-all hover:bg-gray-50">
-          <div className="w-8 h-8 rounded-full bg-white border border-gray-200 text-gray-600 flex items-center justify-center shrink-0">
-            <FiCode size={18} />
-          </div>
-          <div>
-            <div className="font-semibold text-gray-900">
-              Speaking & sharing
-            </div>
-            <div className="text-sm text-gray-600 mt-1">
-              Workshops, knowledge sharing, and mentorship
-            </div>
-          </div>
-        </button>
-
-        <button className="w-full text-left bg-white border border-gray-200 rounded-xl p-4 flex items-start gap-4 transition-all hover:bg-gray-50">
-          <div className="w-8 h-8 rounded-full bg-white border border-gray-200 text-gray-600 flex items-center justify-center shrink-0">
-            <FiHelpCircle size={18} />
-          </div>
-          <div>
-            <div className="font-semibold text-gray-900">General inquiry</div>
-            <div className="text-sm text-gray-600 mt-1">
-              Anything else you'd like to ask
-            </div>
-          </div>
-        </button>
+          );
+        })}
 
         <div className="bg-[#fef9c3] rounded-xl p-6 mt-8">
           <span className="text-xs font-semibold tracking-widest text-google-blue uppercase flex items-center gap-2 mb-3">
@@ -91,7 +88,6 @@ export default function ContactFormSection() {
         </div>
       </div>
 
-      {/* Right Column: Form */}
       <div className="lg:col-span-7 bg-[#f4f5f7] rounded-3xl p-8 lg:p-10 relative">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl font-bold text-gray-900">
@@ -155,10 +151,11 @@ export default function ContactFormSection() {
               Inquiry category *
             </label>
             <select className="w-full rounded-md border border-gray-300 px-4 py-2.5 focus:border-google-blue focus:ring-1 focus:ring-google-blue outline-none bg-white text-sm appearance-none text-gray-700">
-              <option>Joining & learning</option>
-              <option>Collaboration</option>
-              <option>Speaking & sharing</option>
-              <option>General inquiry</option>
+              {inquiryList.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.label}
+                </option>
+              ))}
             </select>
           </div>
 
