@@ -4,13 +4,7 @@ import { StatsData } from "@/types/stats";
 export default async function StatsSection() {
   const result = await apiFetch<StatsData>("/stats");
   const stats = result.data;
-
-  const data = stats || {
-    community_members: 500,
-    workshops_held: 20,
-    projects_shipped: 10,
-    active_tracks: 3,
-  };
+  const data = stats;
 
   const statItems = [
     { label: "Active Members", value: `${data.community_members}+` },
