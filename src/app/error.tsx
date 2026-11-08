@@ -1,5 +1,6 @@
+"use client"
 import { Inter } from "next/font/google";
-import { Search } from "react-icons/si";
+import { BiSearch } from "react-icons/bi";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -16,7 +17,7 @@ export default function Error({
     >
       <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-lg border border-gray-200 text-center">
         <div className="mb-6">
-          <Search
+          <BiSearch
             className="w-12 h-12 mx-auto text-google-blue mb-4"
             size={48}
           />

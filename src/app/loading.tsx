@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import { Loader2 } from "react-icons/si";
+import { FiLoader } from "react-icons/fi";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -10,7 +10,7 @@ export default function Loading() {
     >
       <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-lg border border-gray-200 text-center">
         <div className="mb-8">
-          <Loader2
+          <FiLoader
             className="w-16 h-16 mx-auto text-google-blue mb-4 animate-spin"
             size={48}
           />

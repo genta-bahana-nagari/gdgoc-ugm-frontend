@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
-import { FiArrowRight } from "react-icons/fi";
+import { FiArrowRight, FiBookOpen, FiSearch } from "react-icons/fi"; 
 import type { Track } from "@/types/track";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { BsLaptop, BsPaletteFill } from "react-icons/bs";
@@ -62,7 +62,6 @@ export default function TracksSectionContent({
     },
   };
 
-  // Error state
   if (error) {
     return (
       <section id="tracks" className="max-w-6xl mx-auto px-6 py-20">
@@ -80,13 +79,12 @@ export default function TracksSectionContent({
     );
   }
 
-  // Empty state
   if (!tracks || tracks.length === 0) {
     return (
       <section id="tracks" className="max-w-6xl mx-auto px-6 py-20">
         <div className="bg-white rounded-2xl p-8 max-w-md mx-auto text-center shadow-lg border border-gray-200">
           <div className="mb-8">
-            <Search
+            <FiSearch
               className="w-12 h-12 mx-auto text-google-blue mb-4"
               size={48}
             />
@@ -113,7 +111,7 @@ export default function TracksSectionContent({
     <section id="tracks" className="max-w-6xl mx-auto px-6 py-20">
       <div className="mb-12">
         <span className="text-xs font-semibold tracking-widest text-google-blue uppercase">
-          • FIND YOUR STARTING POINT
+          - FIND YOUR STARTING POINT
         </span>
         <h2 className="mt-4 text-4xl font-bold leading-tight text-gray-900">
           Many interests. One shared journey.
@@ -177,55 +175,55 @@ export default function TracksSectionContent({
             ))}
           </div>
         )}
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {filteredTracks.map((track, i) => {
-            const config = trackConfig[track.id] || {
-              icon: <FiBookOpen size={24} />,
-            };
-            return (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {filteredTracks.map((track, i) => {
+          const config = trackConfig[track.id] || {
+            icon: <FiBookOpen size={24} />,
+          };
+          return (
+            <div
+              key={track.id || i}
+              className="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col hover:shadow-lg transition-shadow"
+            >
               <div
-                key={track.id || i}
-                className="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col hover:shadow-lg transition-shadow"
+                className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
+                style={{ backgroundColor: `${track.color}12`, color: track.color }}
               >
-                <div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
-                  style={{ backgroundColor: `${track.color}12`, color: track.color }}
-                >
-                  {config.icon}
-                </div>
-                <span className="text-xs font-bold tracking-wider text-gray-400 mb-2">
-                  {track.tagline}
-                </span>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  {track.name}
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
-                  {track.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {track.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-2.5 py-1 bg-gray-50 border border-gray-100 text-gray-600 text-xs rounded-md"
-                    >
-                      {skill}
-                    </span>
-                  ))
-                </div>
-
-                <Link
-                  href="#"
-                  className="inline-flex items-center gap-2 font-medium text-sm hover:underline mt-auto"
-                  style={{ color: track.color }}
-                >
-                  Explore this track <FiArrowRight />
-                </Link>
+                {config.icon}
               </div>
-            );
-          })}
-        </div>
+              <span className="text-xs font-bold tracking-wider text-gray-400 mb-2">
+                {track.tagline}
+              </span>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                {track.name}
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
+                {track.description}
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-8">
+                {track.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-2.5 py-1 bg-gray-50 border border-gray-100 text-gray-600 text-xs rounded-md"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+
+              <Link
+                href="#"
+                className="inline-flex items-center gap-2 font-medium text-sm hover:underline mt-auto"
+                style={{ color: track.color }}
+              >
+                Explore this track <FiArrowRight />
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

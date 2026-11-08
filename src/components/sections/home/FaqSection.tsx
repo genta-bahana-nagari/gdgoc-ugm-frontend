@@ -23,4 +23,3 @@ export default async function FaqSection({
 
   return <FaqSectionContent faqList={faqList} error={errorMessage} />;
 }
-}

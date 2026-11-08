@@ -1,6 +1,7 @@
 "use client";
 import { useState, useMemo } from "react";
 import { Faqs } from "@/types/faqs";
+import { BiSearch } from "react-icons/bi";
 import { FiChevronDown, FiArrowRight } from "react-icons/fi";
 
 export default function FaqSectionContent({ faqList, error }: { faqList: Faqs[]; error?: string }) {
@@ -34,7 +35,7 @@ export default function FaqSectionContent({ faqList, error }: { faqList: Faqs[];
       >
         <div className="bg-white rounded-2xl p-8 max-w-md mx-auto text-center shadow-lg border border-gray-200">
           <div className="mb-8">
-            <Search
+            <BiSearch
               className="w-12 h-12 mx-auto text-google-blue mb-4"
               size={48}
             />
