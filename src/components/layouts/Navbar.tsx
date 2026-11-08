@@ -4,7 +4,7 @@ import NavbarContent from "./NavbarContent";
 
 export default async function Navbar({ activePage }: { activePage?: string }) {
   const result = await apiFetch<Navigations[]>("/navigation");
-  const navList = result?.data || [];
+  const navList = result.data || [];
 
   return <NavbarContent navList={navList} activePage={activePage} />;
 }
