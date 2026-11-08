@@ -30,6 +30,7 @@ A performant, responsive digital platform for [Google Developer Groups On Campus
 | **Icons** | react-icons (Fi, Io, Fa, Bs) |
 | **Linting** | ESLint 9 (eslint-config-next) |
 | **API** | Integrated via `src/lib/api.ts` — server components fetch from `https://gdgoc-ugm-api.vercel.app/api` |
+| **Presentation Video** | [Access here](https://drive.google.com/file/d/1dR0iEEOYOF_UUDTOQEEme_uVQPFCYm7T/view?usp=sharing) to watch the presentation video |
 
 ---
 
