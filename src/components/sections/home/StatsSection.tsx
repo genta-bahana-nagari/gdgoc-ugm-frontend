@@ -1,9 +1,41 @@
 import { apiFetch } from "@/lib/api";
 import { StatsData } from "@/types/stats";
 
-export default async function StatsSection() {
-  const result = await apiFetch<StatsData>("/stats");
-  const stats = result.data;
+export default async function StatsSection({
+  error,
+  setError,
+}: {
+  error?: string;
+  setError?: (e: string) => void;
+}) {
+  let stats: StatsData;
+  let errorMessage = "";
+
+  try {
+    const result = await apiFetch<StatsData>("/stats");
+    stats = result.data;
+  } catch (err: any) {
+    errorMessage = err.message || "Failed to load stats";
+    if (setError) setError(errorMessage);
+    // Provide default stats so UI doesn't break
+    stats = {
+      community_members: 0,
+      workshops_held: 0,
+      projects_shipped: 0,
+      active_tracks: 0,
+      university: "GDGOC UGM",
+      founded_year: 2025,
+      tagline: "",
+      social: {
+        instagram: "",
+        linkedin: "",
+        github: "",
+      },
+      city: "",
+      country: "",
+    };
+  }
+
   const data = stats;
 
   const statItems = [

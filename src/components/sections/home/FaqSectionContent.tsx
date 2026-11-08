@@ -3,7 +3,60 @@ import { useState, useMemo } from "react";
 import { Faqs } from "@/types/faqs";
 import { FiChevronDown, FiArrowRight } from "react-icons/fi";
 
-export default function FaqSectionContent({ faqList }: { faqList: Faqs[] }) {
+export default function FaqSectionContent({ faqList, error }: { faqList: Faqs[]; error?: string }) {
+  // Error state
+  if (error) {
+    return (
+      <section
+        id="faq"
+        className="max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-12 gap-12"
+      >
+        <div className="bg-white rounded-2xl p-8 max-w-md mx-auto shadow-lg border border-gray-200 text-center">
+          <h3 className="text-xl font-bold text-gray-900 mb-2">FAQ Section</h3>
+          <p className="text-gray-600 mb-4">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="bg-google-blue text-white font-medium px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            Retry
+          </button>
+        </div>
+      </section>
+    );
+  }
+
+  // Empty state
+  if (!faqList || faqList.length === 0) {
+    return (
+      <section
+        id="faq"
+        className="max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-12 gap-12"
+      >
+        <div className="bg-white rounded-2xl p-8 max-w-md mx-auto text-center shadow-lg border border-gray-200">
+          <div className="mb-8">
+            <Search
+              className="w-12 h-12 mx-auto text-google-blue mb-4"
+              size={48}
+            />
+          </div>
+
+          <h2 className="text-2xl font-medium text-gray-900 mb-2">
+            No FAQs found
+          </h2>
+          <p className="text-gray-500">
+            No frequently asked questions are currently available.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 bg-google-blue text-white font-medium px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            Refresh
+          </button>
+        </div>
+      </section>
+    );
+  }
+
   const [open, setOpen] = useState<number | null>(0);
 
   const categories = useMemo(() => {
@@ -53,6 +106,7 @@ export default function FaqSectionContent({ faqList }: { faqList: Faqs[] }) {
       </div>
 
       <div className="md:col-span-8 flex flex-col">
+        {/* Category filter chips */}
         {categories.size > 0 && (
           <div className="mt-6 flex flex-wrap gap-2">
             <span
@@ -92,6 +146,7 @@ export default function FaqSectionContent({ faqList }: { faqList: Faqs[] }) {
           </div>
         )}
 
+        {/* Faq items filtered by category */}
         {filteredFaqList.map((faq, i) => (
           <div key={i} className="border-b border-gray-200 py-6">
             <button

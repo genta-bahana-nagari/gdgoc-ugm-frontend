@@ -1,0 +1,52 @@
+import { Inter } from "next/font/google";
+import { Search } from "react-icons/si";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error;
+  reset: () => void;
+}) {
+  return (
+    <section
+      className="min-h-screen bg-gray-50 flex items-center justify-center p-6"
+    >
+      <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-lg border border-gray-200 text-center">
+        <div className="mb-6">
+          <Search
+            className="w-12 h-12 mx-auto text-google-blue mb-4"
+            size={48}
+          />
+        </div>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          Something went wrong
+        </h2>
+        <p className="text-gray-600 mb-6">
+          Unable to load the page data. This might be a temporary issue.
+        </p>
+
+        <button
+          onClick={reset}
+          className="bg-google-blue text-white font-medium px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
+        >
+          Retry
+        </button>
+
+        <p className="text-xs text-gray-500 mt-4">
+          <a
+            href="https://www.google.com/search?q=Google+Developer+Groups+On+Campus"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline text-blue-600"
+          >
+            Check GDGOC status
+          </a>
+        </p>
+      </div>
+    </section>
+  );
+}

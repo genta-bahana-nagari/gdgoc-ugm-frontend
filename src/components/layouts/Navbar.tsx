@@ -3,8 +3,22 @@ import { Navigations } from "@/types/navigations";
 import NavbarContent from "./NavbarContent";
 
 export default async function Navbar({ activePage }: { activePage?: string }) {
-  const result = await apiFetch<Navigations[]>("/navigation");
-  const navList = result.data || [];
+  let navList: Navigations[] = [];
+  let errorMessage = "";
+
+  try {
+    const result = await apiFetch<Navigations[]>("/navigation");
+    navList = result.data;
+  } catch (err: any) {
+    errorMessage = err.message || "Failed to load navigation";
+    // Provide default navigation so UI doesn't break
+    navList = [
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
+      { label: "Overview", href: "/overview" },
+      { label: "Contact", href: "/contact" },
+    ];
+  }
 
   return <NavbarContent navList={navList} activePage={activePage} />;
 }

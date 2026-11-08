@@ -1,5 +1,5 @@
 import { cacheLife } from "next/cache";
-import type { ApiResponse } from "@/types/api";
+import type { ApiResponse, ApiError } from "@/types/api";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -19,7 +19,12 @@ export async function apiFetch<T>(endpoint: string): Promise<ApiResponse<T>> {
   });
 
   if (!response.ok) {
-    throw new Error(`API Error: ${response.status}`);
+    const error: ApiError = {
+      message: `${response.status} ${response.statusText}`,
+      status: response.status,
+      endpoint,
+    };
+    throw error;
   }
 
   return response.json();
