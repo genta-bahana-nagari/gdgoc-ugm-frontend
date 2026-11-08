@@ -1,12 +1,17 @@
 import Link from "next/link";
-import { FiInstagram, FiYoutube } from "react-icons/fi";
-
+import { FiInstagram, FiLinkedin, FiGithub } from "react-icons/fi";
 import { apiFetch } from "@/lib/api";
+import { StatsData } from "@/types/stats";
 import { Navigations } from "@/types/navigations";
 
 export default async function Footer() {
-  const result = await apiFetch<Navigations[]>("/navigation");
-  const navList = result?.data || [];
+  const [statsResult, navResult] = await Promise.all([
+    apiFetch<StatsData>("/stats"),
+    apiFetch<Navigations[]>("/navigation"),
+  ]);
+
+  const stats = statsResult.data;
+  const navList = navResult?.data || [];
 
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
@@ -42,23 +47,23 @@ export default async function Footer() {
                   Google Developer Groups
                 </div>
                 <div className="text-sm text-gray-500">
-                  On Campus • Universitas Gadjah Mada
+                  On Campus • {stats.university}
                 </div>
               </div>
             </Link>
             <p className="text-sm text-gray-600 max-w-sm mt-2">
-              A student community for curious minds, shared learning, and
-              technology with purpose.
+              {stats.tagline} A student community for curious minds, shared
+              learning, and technology with purpose.
             </p>
           </div>
 
           <div className="md:col-span-3">
             <h4 className="font-semibold text-gray-900 mb-4">Explore</h4>
             <ul className="flex flex-col gap-3 text-sm text-gray-600">
-              {navList.map((value, i) => (
-                <li key={i}>
-                  <Link href={value.href} className="hover:text-google-blue">
-                    {value.label}
+              {navList.map((item, i) => (
+                <li key={item.href || i}>
+                  <Link href={item.href} className="hover:text-google-blue">
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -70,29 +75,54 @@ export default async function Footer() {
               Keep in the loop
             </h4>
             <a
-              href="#"
+              href={`https://instagram.com/${stats.social.instagram.replace("@", "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm font-medium text-google-blue hover:underline block mb-4"
             >
-              @gdgoc.ugm
+              {stats.social.instagram}
             </a>
             <div className="flex gap-4 text-gray-500 mb-6">
-              <a href="#" className="hover:text-google-blue">
+              <a
+                href={`https://instagram.com/${stats.social.instagram.replace("@", "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-google-blue"
+                aria-label="Instagram"
+              >
                 <FiInstagram size={20} />
               </a>
-              <a href="#" className="hover:text-google-blue">
-                <FiYoutube size={20} />
+              <a
+                href={`https://linkedin.com/company/${stats.social.linkedin}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-google-blue"
+                aria-label="LinkedIn"
+              >
+                <FiLinkedin size={20} />
+              </a>
+              <a
+                href={`https://github.com/${stats.social.github}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-google-blue"
+                aria-label="GitHub"
+              >
+                <FiGithub size={20} />
               </a>
             </div>
             <p className="text-xs text-gray-500">
-              Learn together. Build together.
+              {stats.city}, {stats.country} • Est. {stats.founded_year}
             </p>
           </div>
         </div>
 
         <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-start gap-4 text-xs text-gray-500">
-          <div className="flex flex-col gap-8 w-fit">
-            <p>© GDGoc Universitas Gadjah Mada • 2025/2026</p>
-            <div className="flex h-1.5 w-full rounded-full overflow-hidden">
+          <div className="flex flex-col gap-2">
+            <p>
+              © GDGoC {stats.university} • {stats.founded_year} / Present
+            </p>
+            <div className="flex h-1.5 w-32 rounded-full overflow-hidden">
               <div className="flex-1 bg-google-blue"></div>
               <div className="flex-1 bg-google-red"></div>
               <div className="flex-1 bg-google-yellow"></div>
